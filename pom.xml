@@ -26,11 +26,13 @@
 			<version>1.2</version>
 		</dependency>
 
+		<!-- Installed to Ubuntu and created link in /usr/share/tomcat8/lib due to memory leak
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.41</version>
 		</dependency>
+		 -->
 
 		<dependency>
 			<groupId>junit</groupId>

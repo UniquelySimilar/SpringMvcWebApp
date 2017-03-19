@@ -41,6 +41,12 @@ public class CustomerDaoImpl implements CustomerDao{
 		                customer.setId(rs.getInt("id"));
 		                customer.setName(rs.getString("name"));
 		                customer.setStreet(rs.getString("street"));
+		                customer.setCity(rs.getString("city"));
+		                customer.setState(rs.getString("state"));
+		                customer.setZipcode(rs.getString("zipcode"));
+		                customer.setHomePhone(rs.getString("home_phone"));
+		                customer.setWorkPhone(rs.getString("work_phone"));
+		                customer.setEmail(rs.getString("email"));
 		                
 		                log.info(customer.toString());
 		                

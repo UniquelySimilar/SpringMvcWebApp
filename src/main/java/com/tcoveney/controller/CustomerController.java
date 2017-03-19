@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tcoveney.dao.CustomerDao;
 import com.tcoveney.model.Customer;
@@ -21,12 +22,16 @@ public class CustomerController {
 	private CustomerDao customerDao;
 	
 	@GetMapping("/")
-    public String index() {
+    public ModelAndView index() {
 		log.info("Called CustomerController.index()");
 		
 		List<Customer> customerList = customerDao.list();
 
-		return "customer/index";
+		ModelAndView modelAndView = new ModelAndView("customer/index");
+
+		modelAndView.addObject(customerList);
+
+        return modelAndView;
     }
 
 }
