@@ -23,12 +23,11 @@ public class CustomerController {
 	
 	@GetMapping("")
     public ModelAndView index() {
-		log.info("Called CustomerController.index()");
+		//log.info("Called CustomerController.index()");
 		
 		List<Customer> customerList = customerDao.list();
 
 		ModelAndView modelAndView = new ModelAndView("customer/index");
-
 		modelAndView.addObject(customerList);
 
         return modelAndView;

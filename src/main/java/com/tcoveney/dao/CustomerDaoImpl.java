@@ -48,7 +48,7 @@ public class CustomerDaoImpl implements CustomerDao{
 		                customer.setWorkPhone(rs.getString("work_phone"));
 		                customer.setEmail(rs.getString("email"));
 		                
-		                log.info(customer.toString());
+		                //log.info(customer.toString());
 		                
 		                return customer;
 		            }
