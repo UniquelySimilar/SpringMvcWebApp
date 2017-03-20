@@ -21,7 +21,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerDao customerDao;
 	
-	@GetMapping("/")
+	@GetMapping("")
     public ModelAndView index() {
 		log.info("Called CustomerController.index()");
 		
