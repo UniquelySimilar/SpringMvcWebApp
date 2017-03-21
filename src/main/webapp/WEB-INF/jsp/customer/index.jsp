@@ -7,12 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/bootstrap.css" />">
-<title>Home Page</title>
+<title>Customer List</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
+				<a class="btn btn-default" href="<%=request.getContextPath() %>/dispatch/customer/create" role="button">Add Customer</a>
 				<h3>Customer List</h3>
 				<c:choose>
 					<c:when test="${customerList.size() > 0}">
