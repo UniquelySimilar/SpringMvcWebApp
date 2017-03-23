@@ -13,11 +13,91 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<!-- TODO: implement form -->
-			<div class="col-md-12">
-				<form:form modelAttribute="customer" action="/springmvcwebapp/dispatch/customer/store" >
-					<form:input path="name"/>
-					<input type="submit" value="Save"/>
+			<div class="col-md-4 col-md-offset-4">
+				<form:form modelAttribute="customer" action="/springmvcwebapp/dispatch/customer/store" cssClass="form-horizontal">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label>Name:</label>
+							</div>
+							<div class="col-md-9">
+								<form:input path="name" cssClass="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label>Street:</label>
+							</div>
+							<div class="col-md-9">
+								<form:input path="street" cssClass="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label>City:</label>
+							</div>
+							<div class="col-md-9">
+								<form:input path="city" cssClass="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label>State:</label>
+							</div>
+							<div class="col-md-9">
+								<form:input path="state" cssClass="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label>Zip Code:</label>
+							</div>
+							<div class="col-md-9">
+								<form:input path="zipcode" cssClass="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label>Home Phone:</label>
+							</div>
+							<div class="col-md-9">
+								<form:input path="homePhone" cssClass="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label>Work Phone:</label>
+							</div>
+							<div class="col-md-9">
+								<form:input path="workPhone" cssClass="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-3">
+								<label>Email:</label>
+							</div>
+							<div class="col-md-9">
+								<form:input path="email" cssClass="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default">Save</button>
+					</div>
 				</form:form>
 			</div>
 

@@ -6,7 +6,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,15 +26,14 @@ public class CustomerController {
 	private CustomerDao customerDao;
 	
 	@GetMapping("")
-    public ModelAndView index() {
+    public String index(Model model) {
 		//log.info("Called CustomerController.index()");
 		
 		List<Customer> customerList = customerDao.list();
+		
+		model.addAttribute(customerList);
 
-		ModelAndView modelAndView = new ModelAndView("customer/index");
-		modelAndView.addObject(customerList);
-
-        return modelAndView;
+		return "customer/index";
     }
 	
 	@GetMapping("/{id}")
@@ -41,19 +42,22 @@ public class CustomerController {
 	}
 
 	@GetMapping("/create")
-	public ModelAndView create() {
+	public String create(Model model) {
 		log.info("Called CustomerController.create()");
 		
-		Customer customer = new Customer();
-		ModelAndView modelAndView = new ModelAndView("customer/create");
-		modelAndView.addObject(customer);
+		model.addAttribute(new Customer());
 		
-		return modelAndView;
+		return "customer/create";
 	}
 	
 	@PostMapping("/store")
-	public String store() {
-		log.debug("Called CustomerController.store()");
+	public String store(@ModelAttribute Customer customer) {
+		log.info("Called CustomerController.store()");
+		
+		log.info("Customer name: " + customer.getName());
+		
+		int primaryKey = customerDao.insert(customer);
+		log.info("New customer primary key: " + primaryKey);
 		
 		return "redirect:/dispatch/customer";
 	}
