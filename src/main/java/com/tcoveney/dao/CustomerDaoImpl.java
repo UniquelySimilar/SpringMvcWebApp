@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -64,7 +66,8 @@ public class CustomerDaoImpl implements CustomerDao{
 
 	@Override
 	public int insert(Customer customer) {
-		String sql = "INSERT INTO customers (name) VALUES(?)";
+		String sql = "INSERT INTO customers (name, street, city, state, zipcode, home_phone, work_phone, email, created_at, updated_at)"
+				+ " VALUES(?,?,?,?,?,?,?,?,?,?)";
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(
@@ -72,6 +75,15 @@ public class CustomerDaoImpl implements CustomerDao{
 		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 		            PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
 		            ps.setString(1, customer.getName());
+		            ps.setString(2, customer.getStreet());
+		            ps.setString(3, customer.getCity());
+		            ps.setString(4, customer.getState());
+		            ps.setString(5, customer.getZipcode());
+		            ps.setString(6, customer.getHomePhone());
+		            ps.setString(7, customer.getWorkPhone());
+		            ps.setString(8, customer.getEmail());
+		            ps.setTimestamp(9, new Timestamp(System.currentTimeMillis()));	// created_at
+		            ps.setTimestamp(10, new Timestamp(System.currentTimeMillis()));	// updated_at
 		            return ps;
 		        }
 		    },
