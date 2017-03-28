@@ -13,84 +13,87 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
+			<div class="col-md-8 col-md-offset-4">
 				<form:form modelAttribute="customer" action="/springmvcwebapp/dispatch/customer/store" cssClass="form-horizontal">
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<label>Name:</label>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-5">
 								<form:input path="name" cssClass="form-control"/>
+							</div>
+							<div class="col-md-5">
+								<form:errors path="name" cssStyle="color: red;"/>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<label>Street:</label>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-5">
 								<form:input path="street" cssClass="form-control"/>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<label>City:</label>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-5">
 								<form:input path="city" cssClass="form-control"/>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<label>State:</label>
 							</div>
-							<div class="col-md-9">
-								<form:input path="state" cssClass="form-control"/>
+							<div class="col-md-5">
+								<form:select path="state" items="${stateList}" cssClass="form-control"/>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<label>Zip Code:</label>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-5">
 								<form:input path="zipcode" cssClass="form-control"/>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<label>Home Phone:</label>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-5">
 								<form:input path="homePhone" cssClass="form-control"/>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<label>Work Phone:</label>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-5">
 								<form:input path="workPhone" cssClass="form-control"/>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<label>Email:</label>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-5">
 								<form:input path="email" cssClass="form-control"/>
 							</div>
 						</div>
