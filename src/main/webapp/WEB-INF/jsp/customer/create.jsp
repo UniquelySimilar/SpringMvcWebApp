@@ -14,7 +14,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-4">
-				<form:form modelAttribute="customer" action="/springmvcwebapp/dispatch/customer/store" cssClass="form-horizontal">
+				<form:form modelAttribute="customer" action="${pageContext.request.contextPath}/customer/store" cssClass="form-horizontal">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-2">
@@ -100,6 +100,7 @@
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-default">Save</button>
+						<a class="btn btn-default" href="${pageContext.request.contextPath}/customer" role="button">Cancel</a>
 					</div>
 				</form:form>
 			</div>

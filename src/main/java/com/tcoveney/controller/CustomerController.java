@@ -84,7 +84,7 @@ public class CustomerController {
 		int primaryKey = customerDao.insert(customer);
 		log.info("New customer primary key: " + primaryKey);
 		
-		return "redirect:/dispatch/customer";
+		return "redirect:/customer";
 	}
 
 }
