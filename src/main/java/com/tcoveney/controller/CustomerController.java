@@ -36,6 +36,12 @@ public class CustomerController {
 	protected void initBinder(WebDataBinder binder) {
 		binder.addValidators(new CustomerValidator());
 	}
+
+	@ModelAttribute
+	public void addAttributes(Model model) {
+		Map<String,String> stateList = Utils.getStateList();
+		model.addAttribute("stateList", stateList);
+	}
 	
 	@GetMapping("")
     public String index(Model model) {
@@ -60,8 +66,6 @@ public class CustomerController {
 		Customer customer = new Customer();
 		customer.setState("Colorado");	// Default for drop down
 		model.addAttribute(customer);
-		Map<String,String> stateList = Utils.getStateList();
-		model.addAttribute("stateList", stateList);
 		
 		return "customer/create";
 	}
@@ -72,10 +76,6 @@ public class CustomerController {
 		
 		if (result.hasErrors()) {
 			//log.warn("New Customer contains validation error");
-			// TODO: Research adding 'stateList' as a ModelAttribute to /create and /store, or
-			// possibly pass this 'customer' to a redirect to /create
-			Map<String,String> stateList = Utils.getStateList();
-			model.addAttribute("stateList", stateList);
 			return "customer/create";
 		}
 		
