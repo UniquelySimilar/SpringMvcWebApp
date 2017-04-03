@@ -7,9 +7,10 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 	<http>
+		<intercept-url pattern="/login-simple.jsp*" access="isAnonymous()"/>
 		<intercept-url pattern="/**"
 			access="hasRole('USER')" />
-		<form-login />
+		<form-login login-page='/login-simple.jsp' />
 		<logout />
 	</http>
 	
