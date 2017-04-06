@@ -71,7 +71,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/store")
-	public String store(@Validated @ModelAttribute Customer customer, BindingResult result, Model model) {
+	public String store(@Validated @ModelAttribute Customer customer, BindingResult result) {
 		log.info("Called CustomerController.store()");
 		
 		if (result.hasErrors()) {
