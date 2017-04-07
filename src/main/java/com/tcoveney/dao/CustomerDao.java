@@ -5,8 +5,8 @@ import java.util.List;
 import com.tcoveney.model.Customer;
 
 public interface CustomerDao {
-	public List<Customer> list();
-	
+	public List<Customer> findAll();
+	public Customer find(int id);
 	public int insert(Customer customer);
-
+	public void update(Customer customer);
 }

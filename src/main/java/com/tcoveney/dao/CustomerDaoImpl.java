@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -28,68 +31,91 @@ import com.tcoveney.model.Customer;
 public class CustomerDaoImpl implements CustomerDao{
 	private Log log = LogFactory.getLog(CustomerController.class);
 
-	private JdbcTemplate jdbcTemplate;
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
     public CustomerDaoImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
 	@Override
-	public List<Customer> list() {
-		log.info("Called CustomerDaoImpl.list()");
+	public List<Customer> findAll() {
+		//log.info("Called CustomerDaoImpl.findAll()");
 		String sql = "select * from customers";
 
-		List<Customer> customers = this.jdbcTemplate.query(
-		        sql,
-		        new RowMapper<Customer>() {
-		            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-		                Customer customer = new Customer();
-		                customer.setId(rs.getInt("id"));
-		                customer.setName(rs.getString("name"));
-		                customer.setStreet(rs.getString("street"));
-		                customer.setCity(rs.getString("city"));
-		                customer.setState(rs.getString("state"));
-		                customer.setZipcode(rs.getString("zipcode"));
-		                customer.setHomePhone(rs.getString("home_phone"));
-		                customer.setWorkPhone(rs.getString("work_phone"));
-		                customer.setEmail(rs.getString("email"));
-		                
-		                //log.info(customer.toString());
-		                
-		                return customer;
-		            }
-		        });
+		List<Customer> customers = this.namedParameterJdbcTemplate.query(sql, new CustomerMapper());
 		
 		return customers;
 	}
 
 	@Override
+	public Customer find(int id) {
+		String sql = "select * from customers where id = :id";
+		SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
+		Customer customer = this.namedParameterJdbcTemplate.queryForObject(sql, namedParameters, new CustomerMapper());
+		
+		return customer;
+	}
+	
+	private static final class CustomerMapper implements RowMapper<Customer> {
+	    public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+	    	Customer customer = new Customer();
+            customer.setId(rs.getInt("id"));
+	    	customer.setName(rs.getString("name"));
+	    	customer.setStreet(rs.getString("street"));
+	    	customer.setCity(rs.getString("city"));
+	    	customer.setState(rs.getString("state"));
+	    	customer.setZipcode(rs.getString("zipcode"));
+	    	customer.setHomePhone(rs.getString("home_phone"));
+	    	customer.setWorkPhone(rs.getString("work_phone"));
+	    	customer.setEmail(rs.getString("email"));
+	    	
+	        return customer;
+	    }
+	}
+	
+	@Override
 	public int insert(Customer customer) {
 		String sql = "INSERT INTO customers (name, street, city, state, zipcode, home_phone, work_phone, email, created_at, updated_at)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?,?)";
+				+ " VALUES(:name, :street, :city, :state, :zipcode, :home_phone, :work_phone, :email, :created_at, :updated_at)";
+		
+		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+		mapSqlParameterSource.addValue("name", customer.getName())
+			.addValue("street", customer.getStreet())
+			.addValue("city", customer.getCity())
+			.addValue("state", customer.getState())
+			.addValue("zipcode", customer.getZipcode())
+			.addValue("home_phone", customer.getHomePhone())
+			.addValue("work_phone", customer.getWorkPhone())
+			.addValue("email", customer.getEmail())
+			.addValue("created_at", new Timestamp(System.currentTimeMillis()))
+			.addValue("updated_at", new Timestamp(System.currentTimeMillis()));
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		jdbcTemplate.update(
-		    new PreparedStatementCreator() {
-		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-		            PreparedStatement ps = connection.prepareStatement(sql, new String[] {"id"});
-		            ps.setString(1, customer.getName());
-		            ps.setString(2, customer.getStreet());
-		            ps.setString(3, customer.getCity());
-		            ps.setString(4, customer.getState());
-		            ps.setString(5, customer.getZipcode());
-		            ps.setString(6, customer.getHomePhone());
-		            ps.setString(7, customer.getWorkPhone());
-		            ps.setString(8, customer.getEmail());
-		            ps.setTimestamp(9, new Timestamp(System.currentTimeMillis()));	// created_at
-		            ps.setTimestamp(10, new Timestamp(System.currentTimeMillis()));	// updated_at
-		            return ps;
-		        }
-		    },
-		    keyHolder);
+		this.namedParameterJdbcTemplate.update(sql, mapSqlParameterSource, keyHolder);
 
 		return keyHolder.getKey().intValue();
+	}
+
+	@Override
+	public void update(Customer customer) {
+		String sql = "UPDATE customers SET name = :name, street = :street, city = :city, state = :state, " +
+				"zipcode = :zipcode, home_phone = :home_phone, work_phone = :work_phone, email = :email, " +
+				"updated_at = :updated_at WHERE id = :id";
+
+		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+		mapSqlParameterSource.addValue("name", customer.getName())
+			.addValue("street", customer.getStreet())
+			.addValue("city", customer.getCity())
+			.addValue("state", customer.getState())
+			.addValue("zipcode", customer.getZipcode())
+			.addValue("home_phone", customer.getHomePhone())
+			.addValue("work_phone", customer.getWorkPhone())
+			.addValue("email", customer.getEmail())
+			.addValue("updated_at", new Timestamp(System.currentTimeMillis()))
+			.addValue("id", customer.getId());
+		
+		this.namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
 	}
     
 }

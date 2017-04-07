@@ -41,7 +41,7 @@ public class CustomerApiController {
     public List<Customer> index(Model model) {
 		log.info("Called CustomerApiController.index()");
 		
-		List<Customer> customerList = customerDao.list();
+		List<Customer> customerList = customerDao.findAll();
 
 		return customerList;
     }

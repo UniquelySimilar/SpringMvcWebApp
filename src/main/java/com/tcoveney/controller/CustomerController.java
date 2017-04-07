@@ -47,7 +47,7 @@ public class CustomerController {
     public String index(Model model) {
 		//log.info("Called CustomerController.index()");
 		
-		List<Customer> customerList = customerDao.list();
+		List<Customer> customerList = customerDao.findAll();
 		
 		model.addAttribute(customerList);
 
@@ -61,7 +61,7 @@ public class CustomerController {
 
 	@GetMapping("/create")
 	public String create(Model model) {
-		log.info("Called CustomerController.create()");
+		//log.info("Called CustomerController.create()");
 		
 		Customer customer = new Customer();
 		customer.setState("Colorado");	// Default for drop down
@@ -72,17 +72,39 @@ public class CustomerController {
 	
 	@PostMapping("/store")
 	public String store(@Validated @ModelAttribute Customer customer, BindingResult result) {
-		log.info("Called CustomerController.store()");
+		//log.info("Called CustomerController.store()");
 		
 		if (result.hasErrors()) {
 			//log.warn("New Customer contains validation error");
 			return "customer/create";
 		}
 		
-		log.info("Customer name: " + customer.getName());
+		customerDao.insert(customer);
+		//log.info("New customer primary key: " + primaryKey);
 		
-		int primaryKey = customerDao.insert(customer);
-		log.info("New customer primary key: " + primaryKey);
+		return "redirect:/customer";
+	}
+
+	@GetMapping("/{id}/edit")
+	public String edit(@PathVariable("id") int id, Model model) {
+		//log.info("Called CustomerController.edit() for id = " + id);
+		
+		Customer customer = this.customerDao.find(id);
+		model.addAttribute(customer);
+		
+		return "customer/edit";
+	}
+	
+	@PostMapping("/update")
+	public String update(@Validated @ModelAttribute Customer customer, BindingResult result) {
+		//log.info("Called CustomerController.update()");
+		
+		if (result.hasErrors()) {
+			//log.warn("New Customer contains validation error");
+			return "customer/edit";
+		}
+		
+		customerDao.update(customer);
 		
 		return "redirect:/customer";
 	}

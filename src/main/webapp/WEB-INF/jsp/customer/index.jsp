@@ -28,6 +28,8 @@
 									<th>Home Phone</th>
 									<th>Work Phone</th>
 									<th>Email</th>
+									<th></th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -41,6 +43,12 @@
 										<td>${ customer.homePhone }</td>
 										<td>${ customer.workPhone }</td>
 										<td>${ customer.email }</td>
+										<td>
+											<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/edit" role="button">Edit</a>
+										</td>
+										<td>
+											<a class="btn btn-default" href="${pageContext.request.contextPath}/customer" role="button">Delete</a>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
