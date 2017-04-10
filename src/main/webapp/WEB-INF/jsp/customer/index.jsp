@@ -47,7 +47,9 @@
 											<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/edit" role="button">Edit</a>
 										</td>
 										<td>
-											<a class="btn btn-default" href="${pageContext.request.contextPath}/customer" role="button">Delete</a>
+											<button type="button" class="btn btn-default"
+												data-toggle="modal" data-target="#delete-modal"
+												data-id="${ customer.id }" data-name="${ customer.name }">Delete</button>
 										</td>
 									</tr>
 								</c:forEach>
@@ -64,7 +66,43 @@
 		</div>
 	</div>
 
+	<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary modal-delete-btn" data-del-id="">Delete</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
 	<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
+	<script>
+	$(document).ready(function() {
+		$('#delete-modal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget);	// Button that triggered the modal
+			var id = button.data('id');
+			var name = button.data('name');
+			var modal = $(this);
+			modal.find('.modal-title').text('Delete ' + name + '?');
+			modal.find('.modal-delete-btn').attr('data-del-id', id);
+		});
+
+		$(".modal-delete-btn").click(function() {
+			var delId = $(this).attr('data-del-id');
+			console.log("Clicked modal delete button for id " + delId);
+		});
+	});
+	</script>
 </body>
 </html>
