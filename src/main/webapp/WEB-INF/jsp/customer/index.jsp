@@ -48,15 +48,12 @@
 											<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/edit" role="button">Edit</a>
 										</td>
 										<td>
-				<form:form id="form-delete-${customer.id}" cssClass="form-delete" method="DELETE"
-					action="${pageContext.request.contextPath}/customer/${customer.id}">
-					<input type="hidden" name="customerId" value="${ customer.id }"/>
-					<input type="hidden" name="customerName" value="${ customer.name }"/>
-					<button type="submit" class="btn btn-default">Delete</button>
-				</form:form>
-											<!-- button type="button" class="btn btn-default"
-												data-toggle="modal" data-target="#delete-modal"
-												data-id="${ customer.id }" data-name="${ customer.name }">Delete</button-->
+											<form:form id="form-delete-${customer.id}" cssClass="form-delete" method="DELETE"
+												action="${pageContext.request.contextPath}/customer/${customer.id}">
+												<input type="hidden" name="customerId" value="${ customer.id }"/>
+												<input type="hidden" name="customerName" value="${ customer.name }"/>
+												<button type="submit" class="btn btn-default">Delete</button>
+											</form:form>
 										</td>
 									</tr>
 								</c:forEach>
@@ -84,7 +81,7 @@
 					<h4 class="modal-title"></h4>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary modal-delete-btn" data-del-id="">Delete</button>
+					<button type="button" class="btn btn-primary delete-btn" data-customer-id="">Delete</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				</div>
 
@@ -96,26 +93,31 @@
 	<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
 	<script>
 	$(document).ready(function() {
-		// TODO: Add method to handle delete form submit button and display modal
-		// Add second method to submit delete form
-		$(".form-delete").submit(function(event) {
-			var customerId = $(this).find("input[name='customerId']").val();
-			console.log("Customer ID: " + customerId);
-			event.preventDefault();
-		});
-		
-		$('#delete-modal').on('show.bs.modal', function (event) {
-			var button = $(event.relatedTarget);	// Button that triggered the modal
-			var id = button.data('id');
-			var name = button.data('name');
-			var modal = $(this);
-			modal.find('.modal-title').text('Delete ' + name + '?');
-			modal.find('.modal-delete-btn').attr('data-del-id', id);
+		var deleteConfirmed = false;
+		$('.form-delete').submit(function(event) {
+			if (deleteConfirmed == false) {
+				event.preventDefault();
+				var customerId = $(this).find("input[name='customerId']").val();
+				console.log("Customer ID: " + customerId);
+				var customerName = $(this).find("input[name='customerName']").val();
+				console.log("Customer Name: " + customerName);
+				$('#delete-modal .modal-title').text('Delete ' + customerName + '?');
+				$('#delete-modal .delete-btn').attr('data-customer-id', customerId);
+				$('#delete-modal').modal('show');
+			}
+			else {
+				deleteConfirmed = false;	// Reset
+			}
 		});
 
-		$(".modal-delete-btn").click(function() {
-			var delId = $(this).attr('data-del-id');
-			console.log("Clicked modal delete button for id " + delId);
+		$('#delete-modal .delete-btn').click(function() {
+			var customerId = $(this).attr('data-customer-id');
+			console.log("Clicked modal delete button for Customer ID " + customerId);
+			var formId = "#form-delete-" + customerId;
+			console.log("Form ID: " + formId);
+			deleteConfirmed = true;
+			$(formId).submit();
+			$('#delete-modal').modal('hide');
 		});
 	});
 	</script>
