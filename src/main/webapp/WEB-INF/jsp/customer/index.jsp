@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,9 +48,15 @@
 											<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/edit" role="button">Edit</a>
 										</td>
 										<td>
-											<button type="button" class="btn btn-default"
+				<form:form id="form-delete-${customer.id}" cssClass="form-delete" method="DELETE"
+					action="${pageContext.request.contextPath}/customer/${customer.id}">
+					<input type="hidden" name="customerId" value="${ customer.id }"/>
+					<input type="hidden" name="customerName" value="${ customer.name }"/>
+					<button type="submit" class="btn btn-default">Delete</button>
+				</form:form>
+											<!-- button type="button" class="btn btn-default"
 												data-toggle="modal" data-target="#delete-modal"
-												data-id="${ customer.id }" data-name="${ customer.name }">Delete</button>
+												data-id="${ customer.id }" data-name="${ customer.name }">Delete</button-->
 										</td>
 									</tr>
 								</c:forEach>
@@ -89,6 +96,14 @@
 	<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
 	<script>
 	$(document).ready(function() {
+		// TODO: Add method to handle delete form submit button and display modal
+		// Add second method to submit delete form
+		$(".form-delete").submit(function(event) {
+			var customerId = $(this).find("input[name='customerId']").val();
+			console.log("Customer ID: " + customerId);
+			event.preventDefault();
+		});
+		
 		$('#delete-modal').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget);	// Button that triggered the modal
 			var id = button.data('id');

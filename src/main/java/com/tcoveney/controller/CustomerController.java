@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -106,6 +107,15 @@ public class CustomerController {
 		}
 		
 		customerDao.update(customer);
+		
+		return "redirect:/customer";
+	}
+
+	@DeleteMapping("/{id}")
+	public String delete(@PathVariable("id") int id) {
+		log.info("Called CustomerController.delete() for id = " + id);
+		
+		//Customer customer = this.customerDao.find(id);
 		
 		return "redirect:/customer";
 	}
