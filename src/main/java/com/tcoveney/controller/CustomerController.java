@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -95,7 +96,7 @@ public class CustomerController {
 		return "customer/edit";
 	}
 	
-	@PostMapping("/update")
+	@PatchMapping("/update")
 	public String update(@Validated @ModelAttribute Customer customer, BindingResult result) {
 		//log.info("Called CustomerController.update()");
 		

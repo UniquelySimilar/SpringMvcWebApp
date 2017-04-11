@@ -14,7 +14,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-4">
-				<form:form modelAttribute="customer" action="${pageContext.request.contextPath}/customer/update" cssClass="form-horizontal">
+				<form:form modelAttribute="customer" method="PATCH"
+					action="${pageContext.request.contextPath}/customer/update" cssClass="form-horizontal">
 
 					<form:hidden path="id"/>
 
