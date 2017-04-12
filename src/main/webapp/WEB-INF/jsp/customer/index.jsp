@@ -96,25 +96,27 @@
 		var deleteConfirmed = false;
 		$('.form-delete').submit(function(event) {
 			if (deleteConfirmed == false) {
+				// Prevent form submission and display modal
 				event.preventDefault();
 				var customerId = $(this).find("input[name='customerId']").val();
-				console.log("Customer ID: " + customerId);
+				//console.log("Customer ID: " + customerId);
 				var customerName = $(this).find("input[name='customerName']").val();
-				console.log("Customer Name: " + customerName);
+				//console.log("Customer Name: " + customerName);
 				$('#delete-modal .modal-title').text('Delete ' + customerName + '?');
 				$('#delete-modal .delete-btn').attr('data-customer-id', customerId);
 				$('#delete-modal').modal('show');
 			}
 			else {
+				// Reset flag and allow form submission
 				deleteConfirmed = false;	// Reset
 			}
 		});
 
 		$('#delete-modal .delete-btn').click(function() {
 			var customerId = $(this).attr('data-customer-id');
-			console.log("Clicked modal delete button for Customer ID " + customerId);
+			//console.log("Clicked modal delete button for Customer ID " + customerId);
 			var formId = "#form-delete-" + customerId;
-			console.log("Form ID: " + formId);
+			//console.log("Form ID: " + formId);
 			deleteConfirmed = true;
 			$(formId).submit();
 			$('#delete-modal').modal('hide');

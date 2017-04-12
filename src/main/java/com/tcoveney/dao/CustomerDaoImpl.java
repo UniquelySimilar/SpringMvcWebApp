@@ -117,5 +117,12 @@ public class CustomerDaoImpl implements CustomerDao{
 		
 		this.namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
 	}
+
+	@Override
+	public void delete(int id) {
+		String sql = "DELETE from customers WHERE id = :id";
+		SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
+		this.namedParameterJdbcTemplate.update(sql, namedParameters);
+	}
     
 }

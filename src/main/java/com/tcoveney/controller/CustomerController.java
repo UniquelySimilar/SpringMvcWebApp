@@ -113,9 +113,9 @@ public class CustomerController {
 
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable("id") int id) {
-		log.info("Called CustomerController.delete() for id = " + id);
+		//log.info("Called CustomerController.delete() for id = " + id);
 		
-		//Customer customer = this.customerDao.find(id);
+		this.customerDao.delete(id);
 		
 		return "redirect:/customer";
 	}
