@@ -27,7 +27,7 @@ import org.springframework.stereotype.Repository;
 import com.tcoveney.controller.CustomerController;
 import com.tcoveney.model.Customer;
 
-@Repository
+//@Repository
 public class CustomerDaoImpl implements CustomerDao{
 	private Log log = LogFactory.getLog(CustomerController.class);
 

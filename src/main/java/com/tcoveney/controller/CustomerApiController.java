@@ -24,7 +24,7 @@ import com.tcoveney.dao.CustomerDao;
 import com.tcoveney.model.Customer;
 import com.tcoveney.validator.CustomerValidator;
 
-@RestController
+//@RestController
 @RequestMapping("/api/customer")
 public class CustomerApiController {
 	private Log log = LogFactory.getLog(CustomerController.class);
