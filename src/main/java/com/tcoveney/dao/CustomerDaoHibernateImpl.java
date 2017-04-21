@@ -1,5 +1,6 @@
 package com.tcoveney.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -50,7 +51,7 @@ public class CustomerDaoHibernateImpl implements CustomerDao {
 	@Override
 	public void update(Customer customer) {
 		Session session = this.sessionFactory.getCurrentSession();
-		// TODO: Call customer.setUpdatedAt()
+		customer.setUpdatedAt(new Date());
 		session.update(customer);
 	}
 
