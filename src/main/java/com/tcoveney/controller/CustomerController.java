@@ -1,5 +1,6 @@
 package com.tcoveney.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -91,33 +92,33 @@ public class CustomerController {
 
 	@GetMapping("/{id}/edit")
 	public String edit(@PathVariable("id") int id, Model model, HttpSession httpSession) {
-		log.info("Called CustomerController.edit() for id = " + id);
+		//log.info("Called CustomerController.edit() for id = " + id);
 		
 		Customer customer = this.customerDao.find(id);
 		model.addAttribute(customer);
 		
-		// TODO: Store Customer.createdAt in session
-		
 		httpSession.setAttribute("customerId", new Integer(id));
+		httpSession.setAttribute("createdAt", customer.getCreatedAt());
 		
 		return "customer/edit";
 	}
 	
 	@PutMapping("/update")
 	public String update(@Validated @ModelAttribute Customer customer, BindingResult result, HttpSession httpSession) {
-		log.info("Called CustomerController.update()");
-		log.info(customer.toString());
+		//log.info("Called CustomerController.update()");
+		//log.info(customer.toString());
 		
 		if (result.hasErrors()) {
 			//log.warn("New Customer contains validation error");
 			return "customer/edit";
 		}
 		
-		// TODO: Remove hidden 'id' field from edit form
-		// Retrieve 'id' and 'createdAt' from session
-		
 		Integer customerId = (Integer) httpSession.getAttribute("customerId");
-		log.info("Customer ID from HttpSession: " + customerId);
+		customer.setId(customerId.intValue());
+		//log.info("Customer ID from HttpSession: " + customerId);
+		Date createdAt = (Date) httpSession.getAttribute("createdAt");
+		customer.setCreatedAt(createdAt);
+		//log.info("Customer creation date from HttpSession: " + createdAt.toString());		
 		
 		customerDao.update(customer);
 		

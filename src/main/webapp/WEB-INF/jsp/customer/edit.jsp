@@ -17,8 +17,6 @@
 				<form:form modelAttribute="customer" method="PUT"
 					action="${pageContext.request.contextPath}/customer/update" cssClass="form-horizontal">
 
-					<form:hidden path="id"/>
-
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-2">
