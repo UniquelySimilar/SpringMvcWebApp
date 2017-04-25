@@ -12,6 +12,9 @@
 </head>
 <body>
 	<div class="container-fluid">
+	
+		<%@ include file="../navbar.html" %>
+	
 		<div class="row">
 			<div class="col-md-12">
 				<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/create" role="button">Add Customer</a>
@@ -120,6 +123,16 @@
 			deleteConfirmed = true;
 			$(formId).submit();
 			$('#delete-modal').modal('hide');
+		});
+		
+		$('#web-app-nav-option').click(function() {
+			$(this).parent().children().removeClass('active');
+			$(this).addClass('active');
+		});
+		
+		$('#web-svc-client-nav-option').click(function() {
+			$(this).parent().children().removeClass('active');
+			$(this).addClass('active');
 		});
 	});
 	</script>
