@@ -1,10 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Customer List from API</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="../../css/bootstrap.css">
+<title>Customer List</title>
 </head>
 <body>
-	<h3>Customer List from API: UNDER CONSTRUCTION</h3>
+	<div class="container-fluid">
+		
+		<div class="row">
+			<div class="col-md-12">
+				<a class="btn btn-default" href="" role="button">Add Customer</a>
+				<h3>Customer List</h3>
+
+				<table id="customer-table" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Street</th>
+							<th>City</th>
+							<th>State</th>
+							<th>Zip Code</th>
+							<th>Home Phone</th>
+							<th>Work Phone</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody id="customer-table-body">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary delete-btn" data-customer-id="">Delete</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap.js"></script>
+	<script>
+	$(document).ready(function() {
+		
+		// Call api to get customer list
+		var customerIndexUrl = "http://localhost:8080/springmvcwebapp/api/customer";
+		$.getJSON(customerIndexUrl)
+		.done(function(data) {
+			//console.log( "AJAX done" );
+			//console.log(data);
+			$.each( data, function( i, customer ) {
+				var tableRow = "<tr>" +
+					"<td>" + customer.name + "</td>" +
+					"<td>" + customer.street + "</td>" +
+					"<td>" + customer.city + "</td>" +
+					"<td>" + customer.state + "</td>" +
+					"<td>" + customer.zipcode + "</td>" +
+					"<td>" + customer.homePhone + "</td>" +
+					"<td>" + customer.workPhone + "</td>" +
+					"<td>" + customer.email + "</td>" +
+					"</tr>";
+				$('#customer-table-body').append(tableRow);
+			});
+		})
+		.fail(function(jqxhr, textStatus, error) {
+		    var err = textStatus + ", " + error;
+		    console.log( "AJAX fail: " + err );
+		});
+
+		
+		/*
+		var deleteConfirmed = false;
+		$('.form-delete').submit(function(event) {
+			if (deleteConfirmed == false) {
+				// Prevent form submission and display modal
+				event.preventDefault();
+				var customerId = $(this).find("input[name='customerId']").val();
+				//console.log("Customer ID: " + customerId);
+				var customerName = $(this).find("input[name='customerName']").val();
+				//console.log("Customer Name: " + customerName);
+				$('#delete-modal .modal-title').text('Delete ' + customerName + '?');
+				$('#delete-modal .delete-btn').attr('data-customer-id', customerId);
+				$('#delete-modal').modal('show');
+			}
+			else {
+				// Reset flag and allow form submission
+				deleteConfirmed = false;	// Reset
+			}
+		});
+
+		$('#delete-modal .delete-btn').click(function() {
+			var customerId = $(this).attr('data-customer-id');
+			//console.log("Clicked modal delete button for Customer ID " + customerId);
+			var formId = "#form-delete-" + customerId;
+			//console.log("Form ID: " + formId);
+			deleteConfirmed = true;
+			$(formId).submit();
+			$('#delete-modal').modal('hide');
+		});
+		
+		$('#web-app-nav-option').click(function() {
+			$(this).parent().children().removeClass('active');
+			$(this).addClass('active');
+		});
+		
+		$('#web-svc-client-nav-option').click(function() {
+			$(this).parent().children().removeClass('active');
+			$(this).addClass('active');
+		});
+		*/
+	});
+	</script>
 </body>
 </html>
