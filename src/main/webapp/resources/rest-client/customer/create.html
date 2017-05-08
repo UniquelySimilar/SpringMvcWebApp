@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="../../css/bootstrap.css">
+<title>REST Client: Customer Add</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-4">
+				<form class="form-horizontal" method="POST"
+					action="">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>Name:</label>
+							</div>
+							<div class="col-md-5">
+								<input type="text" name="name" class="form-control"/>
+							</div>
+							<div class="col-md-5">
+								<!-- TODO: Implement error output -->
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>Street:</label>
+							</div>
+							<div class="col-md-5">
+								<input type="text" name="street" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>City:</label>
+							</div>
+							<div class="col-md-5">
+								<input type="text" name="city" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>State:</label>
+							</div>
+							<div class="col-md-5">
+								<!-- form:select path="state" items="${stateList}" cssClass="form-control"/-->
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>Zip Code:</label>
+							</div>
+							<div class="col-md-5">
+								<input type="text" name="zipcode" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>Home Phone:</label>
+							</div>
+							<div class="col-md-5">
+								<input type="text" name="homePhone" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>Work Phone:</label>
+							</div>
+							<div class="col-md-5">
+								<input type="text" name="workPhone" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>Email:</label>
+							</div>
+							<div class="col-md-5">
+								<input type="text" name="email" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default">Save</button>
+						<a class="btn btn-default" href="index.html" role="button">Cancel</a>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap.js"></script>
+	<script >
+		$(document).ready(function() {
+			$('form').submit(function(event) {
+				event.preventDefault();
+				console.log("Form submit event caught");
+				
+				// Post the form data
+				var url = "http://localhost:8080/springmvcwebapp/api/customer/store";
+				var formData =
+					{
+						name:		$("input[name='name']").val(),
+						street:		$("input[name='street']").val(),
+						city:		$("input[name='city']").val(),
+						state:		"",
+						zipcode:	$("input[name='zipcode']").val(),
+						homePhone:	$("input[name='homePhone']").val(),
+						workPhone:	$("input[name='workPhone']").val(),
+						email:		$("input[name='email']").val()
+					};
+				$.post(url, formData)
+				.done(function() {
+					console.log('AJAX post is done');
+					window.location.href = "index.html";
+				})
+				.fail(function(jqXHR, textStatus, errorThrown) {
+					console.log("AJAX post failed: " + textStatus + ": " + errorThrown);
+				});
+			});
+			
+		});
+	</script>
+</body>
+</html>
