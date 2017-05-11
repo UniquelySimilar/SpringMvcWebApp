@@ -25,6 +25,7 @@
 							<th>Home Phone</th>
 							<th>Work Phone</th>
 							<th>Email</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody id="customer-table-body">
@@ -75,6 +76,7 @@
 					"<td>" + customer.homePhone + "</td>" +
 					"<td>" + customer.workPhone + "</td>" +
 					"<td>" + customer.email + "</td>" +
+					"<td><a class='btn btn-default' href='edit.html?id=" + customer.id + "' role='button'>Edit</a></td>" +
 					"</tr>";
 				$('#customer-table-body').append(tableRow);
 			});

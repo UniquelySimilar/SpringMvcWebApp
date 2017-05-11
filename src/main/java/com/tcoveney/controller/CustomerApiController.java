@@ -15,6 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,15 @@ public class CustomerApiController {
 		List<Customer> customerList = customerDao.findAll();
 
 		return customerList;
+    }
+	
+	@GetMapping("/{id}")
+    public Customer index(@PathVariable("id") int id) {
+		log.info("Called CustomerApiController.show()");
+		
+		Customer customer = customerDao.find(id);
+
+		return customer;
     }
 	
 	@PostMapping("/store")
