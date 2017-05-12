@@ -97,7 +97,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-default">Save</button>
+						<button type="submit" class="btn btn-default">Update</button>
 						<a class="btn btn-default" href="index.html" role="button">Cancel</a>
 					</div>
 				</form>
@@ -114,15 +114,24 @@
 			// Get customer ID from request query string
 			var urlParams = new URLSearchParams(window.location.search);
 			var customerId = urlParams.get('id');
-			console.log("URL param 'id': " + customerId);
+			//console.log("URL param 'id': " + customerId);
 			
 			// Get Customer
 			var findCustomerUrl = "http://localhost:8080/springmvcwebapp/api/customer/" + customerId;
 			$.getJSON(findCustomerUrl)
 			.done(function(data) {
-				console.log('AJAX find customer is done');
-				console.log(data);
-				// TODO: Set form input values
+				//console.log('AJAX find customer is done');
+				//console.log(data);
+				// Set form input values
+				var customer = data;
+				$("input[name='name']").val(customer.name);
+				$("input[name='street']").val(customer.street);
+				$("input[name='city']").val(customer.city);
+				$("select[name='state']").val(customer.state);
+				$("input[name='zipcode']").val(customer.zipcode);
+				$("input[name='homePhone']").val(customer.homePhone);
+				$("input[name='workPhone']").val(customer.workPhone);
+				$("input[name='email']").val(customer.email);
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
 				console.log("AJAX find customer failed: " + textStatus + ": " + errorThrown);
@@ -131,12 +140,13 @@
 			// Process form
 			$('form').submit(function(event) {
 				event.preventDefault();
-				console.log("Form submit event caught");
+				//console.log("Form submit event caught");
 				
 				// Post the form data
-				var url = "http://localhost:8080/springmvcwebapp/api/customer/store";
+				var url = "http://localhost:8080/springmvcwebapp/api/customer/update";
 				var formData =
 					{
+						id:			customerId,
 						name:		$("input[name='name']").val(),
 						street:		$("input[name='street']").val(),
 						city:		$("input[name='city']").val(),
@@ -144,15 +154,25 @@
 						zipcode:	$("input[name='zipcode']").val(),
 						homePhone:	$("input[name='homePhone']").val(),
 						workPhone:	$("input[name='workPhone']").val(),
-						email:		$("input[name='email']").val()
+						email:		$("input[name='email']").val(),
+						_method:	"PUT"	// Added so POST converted to PUT in server side Spring app
 					};
+				//console.log(formData);
+				/*
+				// Using PUT here didn't work with Spring @PutMapping in controller.  Known problem per web search.
+				$.ajax({
+					url:	url,
+					type:	"PUT",
+					data:	formData
+				})
+				*/
 				$.post(url, formData)
 				.done(function() {
-					console.log('AJAX post is done');
+					//console.log('AJAX put is done');
 					window.location.href = "index.html";
 				})
 				.fail(function(jqXHR, textStatus, errorThrown) {
-					console.log("AJAX post failed: " + textStatus + ": " + errorThrown);
+					console.log("AJAX put failed: " + textStatus + ": " + errorThrown);
 				});
 			});
 			
