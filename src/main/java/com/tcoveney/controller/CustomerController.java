@@ -6,8 +6,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +34,8 @@ import com.tcoveney.validator.CustomerValidator;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-	private Log log = LogFactory.getLog(CustomerController.class);
+	//private Log log = LogFactory.getLog(CustomerController.class);
+	private static final Logger logger = LogManager.getLogger(CustomerController.class);
 	
 	@Autowired
 	private CustomerDao customerDao;
@@ -51,6 +54,7 @@ public class CustomerController {
 	@GetMapping("")
     public String index(Model model) {
 		//log.info("Called CustomerController.index()");
+		logger.info("Called CustomerController.index()");
 		
 		List<Customer> customerList = customerDao.findAll();
 		
