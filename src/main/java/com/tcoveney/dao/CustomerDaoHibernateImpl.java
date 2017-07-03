@@ -3,8 +3,10 @@ package com.tcoveney.dao;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,8 @@ import com.tcoveney.model.Customer;
 @Repository
 @Transactional
 public class CustomerDaoHibernateImpl implements CustomerDao {
-	private Log log = LogFactory.getLog(CustomerDaoHibernateImpl.class);
+	//private Log log = LogFactory.getLog(CustomerDaoHibernateImpl.class);
+	private static final Logger logger = LogManager.getLogger(CustomerDaoHibernateImpl.class);
 
 	private SessionFactory sessionFactory;
 	
@@ -28,6 +31,7 @@ public class CustomerDaoHibernateImpl implements CustomerDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Customer> findAll() {
+		logger.info("Called 'findAll()");
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Customer> customerList = session.createQuery("from Customer").list();
 		return customerList;
