@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-//import org.apache.commons.logging.Log;
-//import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,6 @@ import com.tcoveney.validator.CustomerValidator;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-	//private Log log = LogFactory.getLog(CustomerController.class);
 	private static final Logger logger = LogManager.getLogger(CustomerController.class);
 	
 	@Autowired
@@ -53,8 +50,7 @@ public class CustomerController {
 	
 	@GetMapping("")
     public String index(Model model) {
-		//log.info("Called CustomerController.index()");
-		logger.info("Called CustomerController.index()");
+		logger.info("CUSTOMER INDEX");
 		
 		List<Customer> customerList = customerDao.findAll();
 		
@@ -70,7 +66,7 @@ public class CustomerController {
 
 	@GetMapping("/create")
 	public String create(Model model) {
-		//log.info("Called CustomerController.create()");
+		//logger.info("CUSTOMER CREATE");
 		
 		Customer customer = new Customer();
 		customer.setState("Colorado");	// Default for drop down
@@ -81,7 +77,7 @@ public class CustomerController {
 	
 	@PostMapping("/store")
 	public String store(@Validated @ModelAttribute Customer customer, BindingResult result) {
-		//log.info("Called CustomerController.store()");
+		//logger.info("CUSTOMER STORE");
 		
 		if (result.hasErrors()) {
 			//log.warn("New Customer contains validation error");
@@ -96,7 +92,7 @@ public class CustomerController {
 
 	@GetMapping("/{id}/edit")
 	public String edit(@PathVariable("id") int id, Model model, HttpSession httpSession) {
-		//log.info("Called CustomerController.edit() for id = " + id);
+		//logger.info("CUSTOMER EDIT for id = " + id);
 		
 		Customer customer = this.customerDao.find(id);
 		model.addAttribute(customer);
@@ -109,7 +105,7 @@ public class CustomerController {
 	
 	@PutMapping("/update")
 	public String update(@Validated @ModelAttribute Customer customer, BindingResult result, HttpSession httpSession) {
-		//log.info("Called CustomerController.update()");
+		//logger.info("CUSTOMER UPDATE");
 		//log.info(customer.toString());
 		
 		if (result.hasErrors()) {
@@ -131,7 +127,7 @@ public class CustomerController {
 
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable("id") int id) {
-		//log.info("Called CustomerController.delete() for id = " + id);
+		//logger.info("CUSTOMER DELETE for id = " + id);
 		
 		this.customerDao.delete(id);
 		
