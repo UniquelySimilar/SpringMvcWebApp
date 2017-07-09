@@ -6,11 +6,13 @@
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
+	<http pattern="/resources/css/**" security="none"/>
+	<http pattern="/resources/js/**" security="none"/>
 	<http>
-		<intercept-url pattern="/login-simple.jsp*" access="isAnonymous()"/>
+		<intercept-url pattern="/login.jsp*" access="isAnonymous()"/>
 		<intercept-url pattern="/**"
 			access="hasRole('USER')" />
-		<form-login login-page='/login-simple.jsp' />
+		<form-login login-page='/login.jsp' />
 		<logout />
 	</http>
 	
