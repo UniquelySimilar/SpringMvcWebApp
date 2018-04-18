@@ -13,7 +13,7 @@
 <body>
 	<div class="container-fluid">
 	
-		<%@ include file="../navbar.html" %>
+		<%@ include file="../navbar.jsp" %>
 	
 		<div class="row">
 			<div class="col-md-12">
@@ -134,6 +134,11 @@
 			$(this).parent().children().removeClass('active');
 			$(this).addClass('active');
 		});
+		
+		$('#logout-link').click(function(event) {
+			event.preventDefault();
+			$('#logout-form').submit();
+		})
 	});
 	</script>
 </body>

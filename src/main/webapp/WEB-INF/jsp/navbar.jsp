@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,7 +24,10 @@
         	<a href="<c:url value='/resources/rest-client/customer/index.html' />" target="_blank">Web Service Client</a>
         </li>
         <li id="web-app-nav-option">
-        	<a href="${pageContext.request.contextPath}/logoutuser">Logout</a>
+	       	<a id="logout-link" href="">Logout</a>
+			<form:form id="logout-form" action="${pageContext.request.contextPath}/logout"
+				method="POST">
+			</form:form>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
