@@ -11,6 +11,9 @@
 <title>Customer List</title>
 </head>
 <body>
+	<script src="<c:url value="/resources/js/jquery.js" />"></script>
+	<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
+	
 	<div class="container-fluid">
 	
 		<%@ include file="../navbar.jsp" %>
@@ -91,9 +94,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="<c:url value="/resources/js/jquery.js" />"></script>
-	<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
 	<script>
 	$(document).ready(function() {
 		var deleteConfirmed = false;
@@ -124,21 +124,6 @@
 			$(formId).submit();
 			$('#delete-modal').modal('hide');
 		});
-		
-		$('#web-app-nav-option').click(function() {
-			$(this).parent().children().removeClass('active');
-			$(this).addClass('active');
-		});
-		
-		$('#web-svc-client-nav-option').click(function() {
-			$(this).parent().children().removeClass('active');
-			$(this).addClass('active');
-		});
-		
-		$('#logout-link').click(function(event) {
-			event.preventDefault();
-			$('#logout-form').submit();
-		})
 	});
 	</script>
 </body>

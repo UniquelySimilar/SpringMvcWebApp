@@ -33,3 +33,22 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<script>
+$(document).ready(function() {
+	$('#web-app-nav-option').click(function() {
+		$(this).parent().children().removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	$('#web-svc-client-nav-option').click(function() {
+		$(this).parent().children().removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	$('#logout-link').click(function(event) {
+		event.preventDefault();
+		$('#logout-form').submit();
+	})
+});
+</script>
