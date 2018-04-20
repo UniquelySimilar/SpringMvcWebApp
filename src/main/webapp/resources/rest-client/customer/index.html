@@ -26,6 +26,7 @@
 							<th>Work Phone</th>
 							<th>Email</th>
 							<th>&nbsp;</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody id="customer-table-body">
@@ -68,7 +69,7 @@
 			//console.log(data);
 			var tableRows = "";
 			$.each( data, function( i, customer ) {
-				tableRows += "<tr>" +
+				tableRows += "<tr id='' >" +
 					"<td>" + customer.name + "</td>" +
 					"<td>" + customer.street + "</td>" +
 					"<td>" + customer.city + "</td>" +
@@ -97,32 +98,45 @@
 			});
 
 			$('#delete-modal .delete-btn').click(function() {
-				var customerId = $(this).data('customer-id');
+				var deleteBtn = $(this);
+				var customerId = deleteBtn.data('customer-id');
 				console.log('customer id from modal delete button click: ' + customerId);
 				$('#delete-modal').modal('hide');
 				
-				// TODO: AJAX call to REST service to delete customer
-				
-				// TODO: Update index view
+				// AJAX call to REST service to delete customer
+				$.ajax({
+					method: "DELETE",
+					url: "http://localhost:8080/springmvcwebapp/api/customer/" + customerId
+				})
+				.done(function(data) {
+					console.log('Delete AJAX call succeeded');
+					
+					// TODO: Update index view by removing parent row
+					// NOT working
+					//deleteBtn.parent().parent().remove();
+					// UPDATE: Since delete button in modal, all ancestors in modal, not table.
+					//console.log(deleteBtn);
+					//console.log(deleteBtn.parent());
+					// Get element type of THIS
+					//var elementType = $(this).prev().prop('nodeName');
+					//console.log('Type of THIS: ' + elementType);
+					
+					// Test: PASSED
+					var testRow = '<tr><td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td>' +
+					'<td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td></tr>';
+					$('#customer-table-body').append(testRow);
+					
+				})
+				.fail(function(jqxhr, textStatus, error) {
+				    var err = textStatus + ", " + error;
+				    console.log( "AJAX fail: " + err );
+				});
 			});
 		})
 		.fail(function(jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
 		    console.log( "AJAX fail: " + err );
 		});
-				
-		// TODO: Implement delete functionality
-		/*
-        $('#delete-modal .delete-btn').click(function() {
-            var customerId = $(this).attr('data-customer-id');
-            //console.log("Clicked modal delete button for Customer ID " + customerId);
-            var formId = "#form-delete-" + customerId;
-            //console.log("Form ID: " + formId);
-            deleteConfirmed = true;
-            $(formId).submit();
-            $('#delete-modal').modal('hide');
-        });
-		*/
 		
 	});
 	</script>

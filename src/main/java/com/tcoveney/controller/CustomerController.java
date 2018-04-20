@@ -50,7 +50,7 @@ public class CustomerController {
 	
 	@GetMapping("")
     public String index(Model model) {
-		logger.info("CUSTOMER INDEX");
+		//logger.info("CUSTOMER INDEX");
 		
 		List<Customer> customerList = customerDao.findAll();
 		

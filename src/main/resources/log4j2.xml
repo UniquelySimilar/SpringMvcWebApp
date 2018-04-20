@@ -24,10 +24,10 @@
 			<AppenderRef ref="STDOUT" />
 		</Logger>
 
-		<!-- Logger name="org.apache.logging.log4j.test2" level="debug"
+		<Logger name="com.tcoveney" level="debug"
 			additivity="false">
 			<AppenderRef ref="File" />
-		</Logger -->
+		</Logger>
 
 		<Root level="info">
 			<AppenderRef ref="STDOUT" />
