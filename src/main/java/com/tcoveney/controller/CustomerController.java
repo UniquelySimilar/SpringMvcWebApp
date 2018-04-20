@@ -97,14 +97,11 @@ public class CustomerController {
 		Customer customer = this.customerDao.find(id);
 		model.addAttribute(customer);
 		
-		httpSession.setAttribute("customerId", new Integer(id));
-		httpSession.setAttribute("createdAt", customer.getCreatedAt());
-		
 		return "customer/edit";
 	}
 	
 	@PutMapping("/update")
-	public String update(@Validated @ModelAttribute Customer customer, BindingResult result, HttpSession httpSession) {
+	public String update(@Validated @ModelAttribute Customer customer, BindingResult result) {
 		//logger.info("CUSTOMER UPDATE");
 		//log.info(customer.toString());
 		
@@ -112,14 +109,7 @@ public class CustomerController {
 			//log.warn("New Customer contains validation error");
 			return "customer/edit";
 		}
-		
-		Integer customerId = (Integer) httpSession.getAttribute("customerId");
-		customer.setId(customerId.intValue());
-		//log.info("Customer ID from HttpSession: " + customerId);
-		Date createdAt = (Date) httpSession.getAttribute("createdAt");
-		customer.setCreatedAt(createdAt);
-		//log.info("Customer creation date from HttpSession: " + createdAt.toString());		
-		
+				
 		customerDao.update(customer);
 		
 		return "redirect:/customer";

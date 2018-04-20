@@ -4,6 +4,8 @@
 			<div class="col-md-8 col-md-offset-4">
 				<form:form modelAttribute="customer" method="PUT"
 					action="${pageContext.request.contextPath}/customer/update" cssClass="form-horizontal">
+					
+					<form:hidden path="id"/>
 
 					<div class="form-group">
 						<div class="row">
