@@ -78,15 +78,22 @@
 					"<td>" + customer.workPhone + "</td>" +
 					"<td>" + customer.email + "</td>" +
 					"<td><a class='btn btn-default' href='edit.html?id=" + customer.id + "' role='button'>Edit</a></td>" +
+					"<td><a class='btn btn-default delete-link' href='' role='button'>Delete</a></td>" +
 					"</tr>";
 			});
 			$('#customer-table-body').append(tableRows);
+
+			$('.delete-link').click(function(event) {
+				console.log('clicked delete link');
+				event.preventDefault();
+				$('#delete-modal').modal('show');
+			});
 		})
 		.fail(function(jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
 		    console.log( "AJAX fail: " + err );
 		});
-		
+				
 		// TODO: Implement delete functionality
 		/*
         $('#delete-modal .delete-btn').click(function() {
