@@ -66,8 +66,9 @@
 		.done(function(data) {
 			//console.log( "AJAX done" );
 			//console.log(data);
+			var tableRows = "";
 			$.each( data, function( i, customer ) {
-				var tableRow = "<tr>" +
+				tableRows += "<tr>" +
 					"<td>" + customer.name + "</td>" +
 					"<td>" + customer.street + "</td>" +
 					"<td>" + customer.city + "</td>" +
@@ -78,55 +79,27 @@
 					"<td>" + customer.email + "</td>" +
 					"<td><a class='btn btn-default' href='edit.html?id=" + customer.id + "' role='button'>Edit</a></td>" +
 					"</tr>";
-				$('#customer-table-body').append(tableRow);
 			});
+			$('#customer-table-body').append(tableRows);
 		})
 		.fail(function(jqxhr, textStatus, error) {
 		    var err = textStatus + ", " + error;
 		    console.log( "AJAX fail: " + err );
 		});
-
 		
+		// TODO: Implement delete functionality
 		/*
-		var deleteConfirmed = false;
-		$('.form-delete').submit(function(event) {
-			if (deleteConfirmed == false) {
-				// Prevent form submission and display modal
-				event.preventDefault();
-				var customerId = $(this).find("input[name='customerId']").val();
-				//console.log("Customer ID: " + customerId);
-				var customerName = $(this).find("input[name='customerName']").val();
-				//console.log("Customer Name: " + customerName);
-				$('#delete-modal .modal-title').text('Delete ' + customerName + '?');
-				$('#delete-modal .delete-btn').attr('data-customer-id', customerId);
-				$('#delete-modal').modal('show');
-			}
-			else {
-				// Reset flag and allow form submission
-				deleteConfirmed = false;	// Reset
-			}
-		});
-
-		$('#delete-modal .delete-btn').click(function() {
-			var customerId = $(this).attr('data-customer-id');
-			//console.log("Clicked modal delete button for Customer ID " + customerId);
-			var formId = "#form-delete-" + customerId;
-			//console.log("Form ID: " + formId);
-			deleteConfirmed = true;
-			$(formId).submit();
-			$('#delete-modal').modal('hide');
-		});
-		
-		$('#web-app-nav-option').click(function() {
-			$(this).parent().children().removeClass('active');
-			$(this).addClass('active');
-		});
-		
-		$('#web-svc-client-nav-option').click(function() {
-			$(this).parent().children().removeClass('active');
-			$(this).addClass('active');
-		});
+        $('#delete-modal .delete-btn').click(function() {
+            var customerId = $(this).attr('data-customer-id');
+            //console.log("Clicked modal delete button for Customer ID " + customerId);
+            var formId = "#form-delete-" + customerId;
+            //console.log("Form ID: " + formId);
+            deleteConfirmed = true;
+            $(formId).submit();
+            $('#delete-modal').modal('hide');
+        });
 		*/
+		
 	});
 	</script>
 </body>

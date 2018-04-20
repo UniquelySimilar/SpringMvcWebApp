@@ -8,6 +8,8 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 	<http pattern="/resources/css/**" security="none"/>
 	<http pattern="/resources/js/**" security="none"/>
+	<!-- Allow REST API URLs to be accessed -->
+	<http pattern="/api/**" security="none"/>
 	<http>
 		<intercept-url pattern="/login.jsp*" access="isAnonymous()"/>
 		<intercept-url pattern="/**"
