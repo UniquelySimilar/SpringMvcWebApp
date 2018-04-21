@@ -20,10 +20,9 @@
 	
 	<authentication-manager>
 		<authentication-provider>
-			<user-service>
-				<user name="admin" password="123qwe" authorities="ROLE_USER, ROLE_ADMIN" />
-				<user name="tim" password="123qwe" authorities="ROLE_USER" />
-			</user-service>
+			<!-- TODO: Implement password encoder -->
+			<!-- password-encoder ref="bcryptEncoder"/ -->
+			<jdbc-user-service data-source-ref="myDataSource"/>
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

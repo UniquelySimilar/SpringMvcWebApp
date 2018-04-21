@@ -17,6 +17,9 @@
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<div class="form-group">
 						<h3 style="margin-bottom: 1em;">Login</h3>
+						<c:if test="${param.error != null}">
+							<h4 style="color: red;">Invalid Username and/or Password</h4>
+						</c:if>
 						<div class="row">
 							<div class="col-md-2">
 								<label>User:</label>
