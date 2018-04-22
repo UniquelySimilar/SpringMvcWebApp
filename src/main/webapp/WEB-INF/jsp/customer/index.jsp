@@ -6,7 +6,7 @@
 				<h3>Customer List</h3>
 				<c:choose>
 					<c:when test="${customerList.size() > 0}">
-						<table class="table table-striped">
+						<table id="customer-table" class="table table-striped">
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -78,6 +78,41 @@
 	</div>
 	<script>
 	$(document).ready(function() {
+		$('#customer-table').DataTable({
+			columns: [
+				null,
+				{
+					orderable: false
+				},
+				{
+					orderable: false
+				},
+				{
+					orderable: false
+				},
+				{
+					orderable: false
+				},
+				{
+					orderable: false
+				},
+				{
+					orderable: false
+				},
+				{
+					orderable: false
+				},
+				{
+					orderable: false,
+					searchable: false
+				},
+				{
+					orderable: false,
+					searchable: false
+				}
+			]
+		});
+		
 		var deleteConfirmed = false;
 		$('.form-delete').submit(function(event) {
 			if (deleteConfirmed == false) {
