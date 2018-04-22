@@ -117,5 +117,12 @@ public class CustomerDaoImpl implements CustomerDao{
 		SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
 		this.namedParameterJdbcTemplate.update(sql, namedParameters);
 	}
+
+	// Used to truncate customers table before seeding
+	@Override
+	public void truncateCustomerTable() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

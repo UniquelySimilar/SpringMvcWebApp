@@ -4,6 +4,11 @@
 			<div class="col-md-12">
 				<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/create" role="button">Add Customer</a>
 				<h3>Customer List</h3>
+				
+				<!-- Used to seed customers table
+				<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/createcustomers" role="button">Create Customers</a>
+				 -->				
+				
 				<c:choose>
 					<c:when test="${customerList.size() > 0}">
 						<table id="customer-table" class="table table-striped">

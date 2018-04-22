@@ -66,5 +66,13 @@ public class CustomerDaoHibernateImpl implements CustomerDao {
 		Customer customer = (Customer) session.load(Customer.class, new Integer(id));
 		session.delete(customer);
 	}
+	
+	// Used to truncate customers table before seeding
+	@Override
+	public void truncateCustomerTable() {
+		//logger.debug("called truncateCustomerTable");
+		Session session = this.sessionFactory.getCurrentSession();		
+		session.createNativeQuery("truncate table customers").executeUpdate();
+	}
 
 }

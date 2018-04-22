@@ -10,4 +10,6 @@ public interface CustomerDao {
 	public int insert(Customer customer);
 	public void update(Customer customer);
 	public void delete(int id);
+	// Used to truncate customers table before seeding
+	public void truncateCustomerTable();
 }

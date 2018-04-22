@@ -123,5 +123,40 @@ public class CustomerController {
 		
 		return "redirect:/customer";
 	}
+	
+	// Used to seed customers table
+//	@GetMapping("/createcustomers")
+//	public String createCustomerRecords() {
+//		logger.debug("called createCustomerRecords()");
+//		
+//		this.customerDao.truncateCustomerTable();
+//		
+//		Customer customer = new Customer();
+//		String recordNumber;
+//		
+//		for (int i = 1; i < 1000; i++) {
+//			if (i < 10) {
+//				recordNumber = "00" + i;
+//			}
+//			else if (i < 100) {
+//				recordNumber = "0" + i;
+//			}
+//			else {
+//				recordNumber = "" + i;
+//			}
+//			
+//			customer.setName("name" + recordNumber);
+//			customer.setStreet("street" + recordNumber);
+//			customer.setCity("Louisville");
+//			customer.setState("Colorado");
+//			customer.setZipcode("80027");
+//			customer.setHomePhone("303-555-1212");
+//			customer.setEmail(customer.getName() + "@example.com");
+//			
+//			customerDao.insert(customer);			
+//		}
+//		
+//		return "redirect:/customer";
+//	}
 
 }
