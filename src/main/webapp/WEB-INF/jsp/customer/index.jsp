@@ -45,7 +45,7 @@
 												action="${pageContext.request.contextPath}/customer/${customer.id}">
 												<input type="hidden" name="customerId" value="${ customer.id }"/>
 												<input type="hidden" name="customerName" value="${ customer.name }"/>
-												<button type="submit" class="btn btn-default">Delete</button>
+												<button type="submit" class="btn btn-default submit-btn">Delete</button>
 											</form:form>
 										</td>
 									</tr>
@@ -117,31 +117,20 @@
 				}
 			]
 		});
-		
-		var deleteConfirmed = false;
-		$('.form-delete').submit(function(event) {
-			if (deleteConfirmed == false) {
-				// Prevent form submission and display modal
-				event.preventDefault();
-				var customerId = $(this).find("input[name='customerId']").val();
-				//console.log("Customer ID: " + customerId);
-				var customerName = $(this).find("input[name='customerName']").val();
-				//console.log("Customer Name: " + customerName);
-				$('#delete-modal .modal-title').text('Delete ' + customerName + '?');
-				$('#delete-modal .delete-btn').attr('data-customer-id', customerId);
-				$('#delete-modal').modal('show');
-			}
-			else {
-				// Reset flag and allow form submission
-				deleteConfirmed = false;	// Reset
-			}
-		});
 
+		$('#customer-table').on('click', '.form-delete .submit-btn', function(event) {
+			// Prevent form submission and display modal
+			event.preventDefault();
+			var customerId = $(this).siblings("input[name='customerId']").val();
+			var customerName = $(this).siblings("input[name='customerName']").val();
+			$('#delete-modal .modal-title').text('Delete ' + customerName + '?');
+			$('#delete-modal .delete-btn').attr('data-customer-id', customerId);
+			$('#delete-modal').modal('show');
+		});
+		
 		$('#delete-modal .delete-btn').click(function() {
 			var customerId = $(this).attr('data-customer-id');
-			//console.log("Clicked modal delete button for Customer ID " + customerId);
 			var formId = "#form-delete-" + customerId;
-			//console.log("Form ID: " + formId);
 			deleteConfirmed = true;
 			$(formId).submit();
 			$('#delete-modal').modal('hide');
