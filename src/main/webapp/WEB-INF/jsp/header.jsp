@@ -10,6 +10,8 @@
 	href="<c:url value="/resources/css/bootstrap.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/dataTables.bootstrap.css" />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/app.css" />">
 <title>Customer List</title>
 </head>
 <body>

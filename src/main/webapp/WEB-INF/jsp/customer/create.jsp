@@ -12,7 +12,7 @@
 								<form:input path="name" cssClass="form-control"/>
 							</div>
 							<div class="col-md-5">
-								<form:errors path="name" cssStyle="color: red;"/>
+								<span class="required">*&nbsp;</span><form:errors path="name" cssClass="error-text"/>
 							</div>
 						</div>
 					</div>
@@ -24,6 +24,9 @@
 							<div class="col-md-5">
 								<form:input path="street" cssClass="form-control"/>
 							</div>
+							<div class="col-md-5">
+								<span class="required">*&nbsp;</span><form:errors path="street" cssClass="error-text"/>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -33,6 +36,9 @@
 							</div>
 							<div class="col-md-5">
 								<form:input path="city" cssClass="form-control"/>
+							</div>
+							<div class="col-md-5">
+								<span class="required">*&nbsp;</span><form:errors path="city" cssClass="error-text"/>
 							</div>
 						</div>
 					</div>
@@ -44,6 +50,9 @@
 							<div class="col-md-5">
 								<form:select path="state" items="${stateList}" cssClass="form-control"/>
 							</div>
+							<div class="col-md-5">
+								<span class="required">*&nbsp;</span><form:errors path="state" cssClass="error-text"/>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -54,6 +63,9 @@
 							<div class="col-md-5">
 								<form:input path="zipcode" cssClass="form-control"/>
 							</div>
+							<div class="col-md-5">
+								<span class="required">*&nbsp;</span><form:errors path="zipcode" cssClass="error-text"/>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -63,6 +75,9 @@
 							</div>
 							<div class="col-md-5">
 								<form:input path="homePhone" cssClass="form-control"/>
+							</div>
+							<div class="col-md-5">
+								<span class="required">*&nbsp;</span><form:errors path="homePhone" cssClass="error-text"/>
 							</div>
 						</div>
 					</div>
@@ -83,6 +98,9 @@
 							</div>
 							<div class="col-md-5">
 								<form:input path="email" cssClass="form-control"/>
+							</div>
+							<div class="col-md-5">
+								<span class="required">*&nbsp;</span><form:errors path="email" cssClass="error-text"/>
 							</div>
 						</div>
 					</div>

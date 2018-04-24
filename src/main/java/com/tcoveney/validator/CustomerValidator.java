@@ -16,7 +16,12 @@ public class CustomerValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
-		// TODO: Add validation for zipcode, phone numbers, and email
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "street", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "city", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "state", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "zipcode", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "homePhone", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required");
 	}
 
 }
