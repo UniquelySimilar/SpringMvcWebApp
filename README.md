@@ -4,6 +4,7 @@
 * Complete CRUD functionality
 * JSP views utilizing JSTL, Bootstrap, and jQuery
 * JSP index view implemented with jQuery DataTable
+* Bean Validation of Controller inputs
 * Hibernate ORM
 * Spring transaction management
 * MySQL Database
