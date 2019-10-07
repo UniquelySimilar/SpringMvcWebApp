@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tcoveney.model.Customer;
 
-@Repository
+@Repository("customerDaoHibernate")
 @Transactional
 public class CustomerDaoHibernateImpl implements CustomerDao {
 	private static final Logger logger = LogManager.getLogger(CustomerDaoHibernateImpl.class);
