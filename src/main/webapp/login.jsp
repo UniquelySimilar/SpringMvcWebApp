@@ -25,7 +25,7 @@
 								<label>User:</label>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="username" class="form-control" value="tim"/>
+								<input type="text" name="username" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -35,7 +35,7 @@
 								<label>Password:</label>
 							</div>
 							<div class="col-md-5">
-								<input type="password" name="password" class="form-control" value="123qwe"/>
+								<input type="password" name="password" class="form-control"/>
 							</div>
 						</div>
 					</div>
