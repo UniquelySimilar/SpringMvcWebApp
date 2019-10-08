@@ -18,11 +18,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li id="web-app-nav-option" class="active">
-        	<a href="${pageContext.request.contextPath}/customer">Web Application</a>
+            <a href="${pageContext.request.contextPath}/customer">Customer Manager</a>
         </li>
+        <!-- This link opens a REST client UI used to test this application's alternate REST implementation.  Now using external client app.
         <li id="web-svc-client-nav-option">
         	<a href="<c:url value='/resources/rest-client/customer/index.html' />" target="_blank">Web Service Client</a>
         </li>
+         -->
         <li id="web-app-nav-option">
 	       	<a id="logout-link" href="">Logout</a>
 			<form:form id="logout-form" action="${pageContext.request.contextPath}/logout"
