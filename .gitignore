@@ -4,3 +4,4 @@
 target/
 src/main/webapp/resources/js/*
 !src/main/webapp/resources/js/app.js
+src/main/resources/jdbc.properties
