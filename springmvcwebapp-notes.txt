@@ -1,0 +1,5 @@
+TASK LIST:
+- Migrate Customer model Hibernate config from XML mapping file to annotations.
+  * TODO: Determine why 'created_at' is getting updated when Customer is updated.
+- Add an 'orders' table with supporting application functionality.
+  * One-to-many relationship between 'customers' and 'orders'.

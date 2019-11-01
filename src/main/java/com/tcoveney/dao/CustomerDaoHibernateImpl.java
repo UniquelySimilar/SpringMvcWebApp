@@ -44,7 +44,7 @@ public class CustomerDaoHibernateImpl implements CustomerDao {
 	}
 	
 	@Override
-	public int insert(Customer customer) {
+	public Integer insert(Customer customer) {
 		//logger.info("CUSTOMER DAO INSERT");
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(customer);

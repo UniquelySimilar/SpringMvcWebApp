@@ -74,7 +74,7 @@ public class CustomerApiController {
 		}
 		
 		
-		int primaryKey = customerDao.insert(customer);
+		Integer primaryKey = customerDao.insert(customer);
 		//log.debug("New customer primary key: " + primaryKey);
 		
 		return new ResponseEntity<String>("New customer created", responseHeaders, HttpStatus.CREATED);

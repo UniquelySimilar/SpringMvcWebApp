@@ -35,16 +35,14 @@
 	<bean id="hibernateSessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-		<property name="mappingResources">
-			<list>
-				<value>hibernate/Customer.hbm.xml</value>
-			</list>
-		</property>
 		<property name="hibernateProperties">
-			<value>
-				hibernate.dialect=org.hibernate.dialect.MySQLDialect
-			</value>
+			<props>
+                <prop key="hibernate.dialect">
+                    org.hibernate.dialect.MySQLDialect
+                </prop>
+			</props>
 		</property>
+		<property name="packagesToScan" value="com.tcoveney.model" />
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />

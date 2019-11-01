@@ -2,24 +2,45 @@ package com.tcoveney.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "customers")
 public class Customer {
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+    
 	private String name;
 	private String street;
 	private String city;
 	private String state;
 	private String zipcode;
+	
+	@Column(name = "home_phone")
 	private String homePhone;
+	
+	@Column(name = "work_phone")
 	private String workPhone;
+	
 	private String email;
+	
+	@Column(name = "created_at")
 	private Date createdAt;
+	
+	@Column(name = "updated_at")
 	private Date updatedAt;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

@@ -69,7 +69,7 @@ public class CustomerDaoImpl implements CustomerDao{
 	}
 	
 	@Override
-	public int insert(Customer customer) {
+	public Integer insert(Customer customer) {
 		String sql = "INSERT INTO customers (name, street, city, state, zipcode, home_phone, work_phone, email, created_at, updated_at)"
 				+ " VALUES(:name, :street, :city, :state, :zipcode, :home_phone, :work_phone, :email, :created_at, :updated_at)";
 		
@@ -88,7 +88,8 @@ public class CustomerDaoImpl implements CustomerDao{
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		this.namedParameterJdbcTemplate.update(sql, mapSqlParameterSource, keyHolder);
 
-		return keyHolder.getKey().intValue();
+		return (Integer)keyHolder.getKey();
+		//return keyHolder.getKey().intValue();
 	}
 
 	@Override
