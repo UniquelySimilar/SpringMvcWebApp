@@ -16,6 +16,15 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<p class="navbar-text">Signed in as
+        	<span>
+        		<strong>&nbsp;
+			        <security:authorize access="isAuthenticated()">
+			        	<security:authentication property="principal.username" />
+			        </security:authorize>
+        		</strong>
+        	</span>
+    	</p>
       <ul class="nav navbar-nav">
         <li id="web-app-nav-option" class="active">
             <a href="${pageContext.request.contextPath}/customer">Customer Manager</a>

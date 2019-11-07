@@ -100,7 +100,5 @@
 		</div>
 	</div>
 
-	<script src="<c:url value="/resources/js/jquery.js" />"></script>
-	<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
 </body>
 </html>

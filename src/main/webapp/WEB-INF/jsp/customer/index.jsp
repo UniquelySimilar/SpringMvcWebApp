@@ -41,12 +41,14 @@
 											<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/edit" role="button">Edit</a>
 										</td>
 										<td>
-											<form:form id="form-delete-${customer.id}" cssClass="form-delete" method="DELETE"
-												action="${pageContext.request.contextPath}/customer/${customer.id}">
-												<input type="hidden" name="customerId" value="${ customer.id }"/>
-												<input type="hidden" name="customerName" value="${ customer.name }"/>
-												<button type="submit" class="btn btn-default submit-btn">Delete</button>
-											</form:form>
+											<security:authorize access="hasRole('ROLE_ADMIN')">
+												<form:form id="form-delete-${customer.id}" cssClass="form-delete" method="DELETE"
+													action="${pageContext.request.contextPath}/customer/${customer.id}">
+													<input type="hidden" name="customerId" value="${ customer.id }"/>
+													<input type="hidden" name="customerName" value="${ customer.name }"/>
+													<button type="submit" class="btn btn-default submit-btn">Delete</button>
+												</form:form>
+											</security:authorize>
 										</td>
 									</tr>
 								</c:forEach>
