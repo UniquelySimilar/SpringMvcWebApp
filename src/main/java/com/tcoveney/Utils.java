@@ -1,11 +1,14 @@
 package com.tcoveney;
 
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 
 public class Utils {
-	public static Map<String,String> getStateList() {
-		Map<String,String> stateList = new TreeMap<String,String>();
+	private static final Map<String,String> stateListFinal;
+	
+	static {
+		Map<String,String> stateList = new LinkedHashMap<String,String>();
 		stateList.put("Alabama", "Alabama");
 		stateList.put("Alaska", "Alaska");
 		stateList.put("Arizona", "Arizona");
@@ -57,7 +60,11 @@ public class Utils {
 		stateList.put("Wisconsin", "Wisconsin");
 		stateList.put("Wyoming", "Wyoming");
 		
-		return stateList;
+		stateListFinal = Collections.unmodifiableMap(stateList);
+	}
+	
+	public static Map<String,String> getStateList() {
+		return stateListFinal;
 	}
 
 }
