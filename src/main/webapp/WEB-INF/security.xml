@@ -8,8 +8,6 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 	<http pattern="/resources/css/**" security="none"/>
 	<http pattern="/resources/js/**" security="none"/>
-	<!-- Allow REST API URLs to be accessed -->
-	<http pattern="/api/**" security="none"/>
 	<http>
 		<intercept-url pattern="/login.jsp*" access="isAnonymous()"/>
 		<intercept-url pattern="/**"
@@ -17,6 +15,7 @@
 		<form-login login-page='/login.jsp' />
 		<logout />
 		<access-denied-handler error-page="/WEB-INF/jsp/error-pages/403-access-denied.jsp"/>
+		<headers />
 	</http>
 	
 	<beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />	
