@@ -9,4 +9,3 @@
 * Spring transaction management
 * MySQL Database
 * Spring Security including database authentication provider with encrypted passwords
-* Also includes a separate REST controller implementation and REST client views for testing
