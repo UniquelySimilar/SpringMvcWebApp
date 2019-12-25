@@ -8,7 +8,8 @@
 		<id name="id">
 			<generator class="assigned"></generator>
 		</id>
-		<property name="name"></property>
+		<property name="firstName" column="first_name"></property>
+		<property name="lastName" column="last_name"></property>
 		<property name="street"></property>
 		<property name="city"></property>
 		<property name="state"></property>

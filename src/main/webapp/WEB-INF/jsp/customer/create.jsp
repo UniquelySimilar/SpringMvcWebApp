@@ -6,13 +6,26 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-2">
-								<label>Name:</label>
+								<label>First Name:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="name" cssClass="form-control"/>
+								<form:input path="firstName" cssClass="form-control"/>
 							</div>
 							<div class="col-md-5">
-								<span class="required">*&nbsp;</span><form:errors path="name" cssClass="error-text"/>
+								<span class="required">*&nbsp;</span><form:errors path="firstName" cssClass="error-text"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>Last Name:</label>
+							</div>
+							<div class="col-md-5">
+								<form:input path="lastName" cssClass="form-control"/>
+							</div>
+							<div class="col-md-5">
+								<span class="required">*&nbsp;</span><form:errors path="lastName" cssClass="error-text"/>
 							</div>
 						</div>
 					</div>

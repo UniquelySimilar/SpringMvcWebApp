@@ -16,7 +16,12 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
     
-	private String name;
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "last_name")
+	private String lastName;
+
 	private String street;
 	private String city;
 	private String state;
@@ -44,12 +49,20 @@ public class Customer {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	public String getStreet() {
@@ -126,7 +139,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", street=" + street + ", city=" + city + ", state=" + state
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street + ", city=" + city + ", state=" + state
 				+ ", zipcode=" + zipcode + ", homePhone=" + homePhone + ", workPhone=" + workPhone + ", email=" + email
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}

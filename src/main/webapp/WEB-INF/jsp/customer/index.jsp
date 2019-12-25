@@ -14,7 +14,8 @@
 						<table id="customer-table" class="table table-striped">
 							<thead>
 								<tr>
-									<th>Name</th>
+									<th>Last Name</th>
+									<th>First Name</th>
 									<th>Street</th>
 									<th>City</th>
 									<th>State</th>
@@ -29,7 +30,8 @@
 							<tbody>
 								<c:forEach items="${customerList}" var="customer">
 									<tr>
-										<td>${ customer.name }</td>
+										<td>${ customer.lastName }</td>
+										<td>${ customer.firstName }</td>
 										<td>${ customer.street }</td>
 										<td>${ customer.city }</td>
 										<td>${ customer.state }</td>
@@ -44,8 +46,8 @@
 											<security:authorize access="hasRole('ROLE_ADMIN')">
 												<form:form id="form-delete-${customer.id}" cssClass="form-delete" method="DELETE"
 													action="${pageContext.request.contextPath}/customer/${customer.id}">
-													<input type="hidden" name="customerId" value="${ customer.id }"/>
-													<input type="hidden" name="customerName" value="${ customer.name }"/>
+													<input type="hidden" name="customerId" value="${customer.id}"/>
+													<input type="hidden" name="customerName" value="${customer.firstName}${' '}${customer.lastName}"/>
 													<button type="submit" class="btn btn-default submit-btn">Delete</button>
 												</form:form>
 											</security:authorize>
@@ -88,6 +90,9 @@
 		$('#customer-table').DataTable({
 			columns: [
 				null,
+				{
+					orderable: false
+				},
 				{
 					orderable: false
 				},

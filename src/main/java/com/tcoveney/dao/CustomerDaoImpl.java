@@ -55,7 +55,8 @@ public class CustomerDaoImpl implements CustomerDao{
 	    public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
 	    	Customer customer = new Customer();
             customer.setId(rs.getInt("id"));
-	    	customer.setName(rs.getString("name"));
+	    	customer.setFirstName(rs.getString("first_name"));
+	    	customer.setLastName(rs.getString("last_name"));
 	    	customer.setStreet(rs.getString("street"));
 	    	customer.setCity(rs.getString("city"));
 	    	customer.setState(rs.getString("state"));
@@ -70,11 +71,12 @@ public class CustomerDaoImpl implements CustomerDao{
 	
 	@Override
 	public Integer insert(Customer customer) {
-		String sql = "INSERT INTO customers (name, street, city, state, zipcode, home_phone, work_phone, email, created_at, updated_at)"
-				+ " VALUES(:name, :street, :city, :state, :zipcode, :home_phone, :work_phone, :email, :created_at, :updated_at)";
+		String sql = "INSERT INTO customers (first_name, last_name, street, city, state, zipcode, home_phone, work_phone, email, created_at, updated_at)"
+				+ " VALUES(:first_name, :last_name, :street, :city, :state, :zipcode, :home_phone, :work_phone, :email, :created_at, :updated_at)";
 		
 		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-		mapSqlParameterSource.addValue("name", customer.getName())
+		mapSqlParameterSource.addValue("first_name", customer.getFirstName())
+			.addValue("last_name", customer.getLastName())
 			.addValue("street", customer.getStreet())
 			.addValue("city", customer.getCity())
 			.addValue("state", customer.getState())
@@ -94,12 +96,13 @@ public class CustomerDaoImpl implements CustomerDao{
 
 	@Override
 	public void update(Customer customer) {
-		String sql = "UPDATE customers SET name = :name, street = :street, city = :city, state = :state, " +
+		String sql = "UPDATE customers SET first_name = :first_name, last_name = :last_name, street = :street, city = :city, state = :state, " +
 				"zipcode = :zipcode, home_phone = :home_phone, work_phone = :work_phone, email = :email, " +
 				"updated_at = :updated_at WHERE id = :id";
 
 		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-		mapSqlParameterSource.addValue("name", customer.getName())
+		mapSqlParameterSource.addValue("first_name", customer.getFirstName())
+			.addValue("last_name", customer.getLastName())
 			.addValue("street", customer.getStreet())
 			.addValue("city", customer.getCity())
 			.addValue("state", customer.getState())

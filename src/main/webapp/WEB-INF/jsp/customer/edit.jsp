@@ -10,13 +10,26 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-2">
-								<label>Name:</label>
+								<label>First Name:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="name" cssClass="form-control"/>
+								<form:input path="firstName" cssClass="form-control"/>
 							</div>
 							<div class="col-md-5">
-								<form:errors path="name" cssStyle="color: red;"/>
+								<form:errors path="firstName" cssStyle="color: red;"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								<label>Last Name:</label>
+							</div>
+							<div class="col-md-5">
+								<form:input path="lastName" cssClass="form-control"/>
+							</div>
+							<div class="col-md-5">
+								<form:errors path="lastName" cssStyle="color: red;"/>
 							</div>
 						</div>
 					</div>
