@@ -30,15 +30,15 @@
 							<tbody>
 								<c:forEach items="${customerList}" var="customer">
 									<tr>
-										<td>${ customer.lastName }</td>
-										<td>${ customer.firstName }</td>
-										<td>${ customer.street }</td>
-										<td>${ customer.city }</td>
-										<td>${ customer.state }</td>
-										<td>${ customer.zipcode }</td>
-										<td>${ customer.homePhone }</td>
-										<td>${ customer.workPhone }</td>
-										<td>${ customer.email }</td>
+										<td><c:out value="${ customer.lastName }"/></td>
+										<td><c:out value="${ customer.firstName }"/></td>
+										<td><c:out value="${ customer.street }"/></td>
+										<td><c:out value="${ customer.city }"/></td>
+										<td><c:out value="${ customer.state }"/></td>
+										<td><c:out value="${ customer.zipcode }"/></td>
+										<td><c:out value="${ customer.homePhone }"/></td>
+										<td><c:out value="${ customer.workPhone }"/></td>
+										<td><c:out value="${ customer.email }"/></td>
 										<td>
 											<a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/edit" role="button">Edit</a>
 										</td>

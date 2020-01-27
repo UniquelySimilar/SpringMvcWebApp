@@ -13,7 +13,7 @@
 								<label>First Name:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="firstName" cssClass="form-control"/>
+								<form:input path="firstName" cssClass="form-control" htmlEscape="true"/>
 							</div>
 							<div class="col-md-5">
 								<form:errors path="firstName" cssStyle="color: red;"/>
@@ -26,7 +26,7 @@
 								<label>Last Name:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="lastName" cssClass="form-control"/>
+								<form:input path="lastName" cssClass="form-control" htmlEscape="true"/>
 							</div>
 							<div class="col-md-5">
 								<form:errors path="lastName" cssStyle="color: red;"/>
@@ -39,7 +39,7 @@
 								<label>Street:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="street" cssClass="form-control"/>
+								<form:input path="street" cssClass="form-control" htmlEscape="true"/>
 							</div>
 						</div>
 					</div>
@@ -49,7 +49,7 @@
 								<label>City:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="city" cssClass="form-control"/>
+								<form:input path="city" cssClass="form-control" htmlEscape="true"/>
 							</div>
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 								<label>Zip Code:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="zipcode" cssClass="form-control"/>
+								<form:input path="zipcode" cssClass="form-control" htmlEscape="true"/>
 							</div>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 								<label>Home Phone:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="homePhone" cssClass="form-control"/>
+								<form:input path="homePhone" cssClass="form-control" htmlEscape="true"/>
 							</div>
 						</div>
 					</div>
@@ -89,7 +89,7 @@
 								<label>Work Phone:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="workPhone" cssClass="form-control"/>
+								<form:input path="workPhone" cssClass="form-control" htmlEscape="true"/>
 							</div>
 						</div>
 					</div>
@@ -99,7 +99,7 @@
 								<label>Email:</label>
 							</div>
 							<div class="col-md-5">
-								<form:input path="email" cssClass="form-control"/>
+								<form:input path="email" cssClass="form-control" htmlEscape="true"/>
 							</div>
 						</div>
 					</div>
