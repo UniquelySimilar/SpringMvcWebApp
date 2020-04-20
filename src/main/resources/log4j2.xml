@@ -2,7 +2,7 @@
 <Configuration status="warn" strict="true" name="XMLConfigTest"
 	packages="org.apache.logging.log4j">
 	<Properties>
-		<Property name="filename">/var/log/tomcat8/springmvcwebapp.log</Property>
+		<Property name="filename">/opt/tomcat/logs/springmvcwebapp.log</Property>
 	</Properties>
 
 	<Appenders>
